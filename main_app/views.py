@@ -7,7 +7,7 @@ from .swaper_pp import *
 
 
 def index(request):
-    return render(request, "index2.html")
+    return render(request, "index1.html")
 
 class HandelFileUpload(APIView):
     def post(self, request):
