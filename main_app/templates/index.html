@@ -66,6 +66,7 @@
             padding: 20px;
             border-radius: 5px;
             margin-bottom: 20px;
+            
         }
 
         .upload-btn {
@@ -123,9 +124,9 @@
 <body>
     <div class="container">
         <div class="terminal-box">
-        <h1>Face Swap between images</h1>
-        <div class="section-divider"></div> <!-- Add divider -->
-        <h2>Swap faces between two images</h2>
+            <h1>Face Swap between images</h1>
+            <div class="section-divider"></div> <!-- Add divider -->
+            <h2>Swap faces between two images</h2>
         </div>
         <div class="terminal-box">
             <input type="file" class="my-pond mt-4" multiple name="filepond" />
@@ -135,13 +136,18 @@
             <button class="btn btn-success" onclick="upload_file_p_p()">Upload Files</button>
         </div>
         <div>
-        <h3>Select two images with single faces to see the magic <br><br><br><br></h3>
+            <h3>Select two images with single faces to see the magic </h3>
         </div>
+         <!-- Display result here -->
+         <div class="terminal-box"><div id="result"></div></div>
+
+
+        <br><br><br><br><br><br>
 
         <div class="terminal-box">
-        <h1>Face Swap inside one image</h1>
-        <div class="section-divider"></div> <!-- Add divider -->
-        <h2>Swap faces inside one image containing two faces</h2>
+            <h1>Face Swap inside one image</h1>
+            <div class="section-divider"></div> <!-- Add divider -->
+            <h2>Swap faces inside one image containing two faces</h2>
         </div>
 
         <div class="terminal-box">
@@ -152,7 +158,7 @@
             <button class="btn btn-success" onclick="upload_file_pp()">Upload File</button>
         </div>
         <h3>Select an image with two faces to see the magic</h3>
-
+        <div class="terminal-box"><div id="result2"></div></div>
 
         <div class="card mt-3" id="btn" style="display: none;">
             <div class="card-body">
@@ -162,6 +168,8 @@
                 <p>Have you already clicked?</p>
             </div>
         </div>
+
+       
     </div>
 
     <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
@@ -186,8 +194,6 @@
             }
         );
 
-        var url = null;
-
         function upload_file_p_p() {
             var files = pond.getFiles();
             var formdata = new FormData();
@@ -205,8 +211,10 @@
             }).then(res => res.json())
                 .then(result => {
                     console.log(result);
-                    // url = `http://127.0.0.1:8000/download/${result.data.folder}`
-                    // document.getElementById('btn').style.display = 'block';
+                    if (result.message === 'Files uploaded successfully') {
+
+                        document.getElementById('result').innerHTML = "<img src='media/"+result.data.folder+"/op.png' style='max-width: 100%; height: auto;'>";
+                    }
                 });
         }
 
@@ -227,8 +235,9 @@
             }).then(res => res.json())
                 .then(result => {
                     console.log(result);
-                    // url = `http://127.0.0.1:8000/download/${result.data.folder}`
-                    // document.getElementById('btn').style.display = 'block';
+                    if (result.message === 'Files uploaded successfully') {
+                        document.getElementById('result2').innerHTML = "<img src='media/"+result.data.folder+"/op.png' style='max-width: 100%; height: auto;'>";
+                    }
                 });
         }
 

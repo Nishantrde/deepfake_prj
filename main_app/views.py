@@ -59,7 +59,7 @@ class HandelFaceFileUpload(APIView):
                     print(item, "pp")
                     items.append(f"{serializer.data['folder']}\{item}")
                 run_iit(items[0], f"{serializer.data['folder']}")
-                print("here")
+                serializer.zip_files(f"{serializer.data['folder']}")
                 return Response({
                     'status': 200,
                     'message': 'Files uploaded successfully',
