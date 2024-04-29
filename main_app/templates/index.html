@@ -124,12 +124,13 @@
 <body>
     <div class="container">
         <div class="terminal-box">
-            <h1>Face Swap between images</h1>
+            <h1 id="title1"></h1>
             <div class="section-divider"></div> <!-- Add divider -->
             <h2>Swap faces between two images</h2>
         </div>
         <div class="terminal-box">
             <input type="file" class="my-pond mt-4" multiple name="filepond" />
+            
         </div>
 
         <div class="text-center upload-btn">
@@ -145,8 +146,9 @@
         <br><br><br><br><br><br>
 
         <div class="terminal-box">
-            <h1>Face Swap inside one image</h1>
+            <h1 id="title2"></h1>
             <div class="section-divider"></div> <!-- Add divider -->
+            <h2 id="title3"></h2>
             <h2>Swap faces inside one image containing two faces</h2>
         </div>
 
@@ -248,6 +250,42 @@
             /* Alert the copied text */
             alert("Copied the text: " + url);
         }
+
+        // Typing effect
+        const text1 = "Face Swap inside one image";
+        const text2 = "Face Swap between images";
+        const text3 = "Swap faces between two images";
+        
+        let i = 0;
+        let j = 0;
+        const speed = 100; // Typing speed in milliseconds
+
+        function typeWriter1() {
+            if (i < text1.length) {
+                document.getElementById("title1").innerHTML += text1.charAt(i);
+                i++;
+                setTimeout(typeWriter1, speed);
+            }
+        }
+
+        function typeWriter2() {
+            if (j < text2.length) {
+                document.getElementById("title2").innerHTML += text2.charAt(j);
+                j++;
+                setTimeout(typeWriter2, speed);
+            }
+        }
+        function typeWriter3() {
+            if (j < text3.length) {
+                document.getElementById("title3").innerHTML += text3.charAt(j);
+                j++;
+                setTimeout(typeWriter2, speed);
+            }
+        }
+
+        // Start typing effects
+        typeWriter1();
+        setTimeout(typeWriter2, text1.length * speed); // Start the second typing effect after the first one finishes
     </script>
 </body>
 
