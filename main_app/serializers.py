@@ -20,6 +20,6 @@ class FlieListSerilizers(serializers.Serializer):
             files_obj = Files.objects.create(folder = folder, file = file)
             files_objs.append(files_obj)
 
-        self.zip_files(str(folder.uid))
+        
 
         return {'files':{}, 'folder' : str(folder.uid)}

@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Face Swapper AI</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
-
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+        rel="stylesheet">
     <style>
-        /**
- * FilePond Custom Styles
- */
+        /* FilePond Custom Styles */
         .filepond--drop-label {
-            color: #4c4e53;
+            color: #191a1c;
         }
 
         .filepond--label-action {
@@ -30,32 +29,72 @@
         }
 
         .filepond--item-panel {
-            background-color: #595e68;
+            background-color: #000000;
         }
 
         .filepond--drip-blob {
-            background-color: #7f8a9a;
+            background-color: #050505;
         }
 
-        /**
- * Page Styles
- */
-        html {
-            padding: 3vh 0 0;
-        }
-
+        /* Page Styles */
         body {
-            max-width: 28em;
+            background-color: #212529;
+            color: #fff;
+            font-family: "Courier New", Courier, monospace; /* Change font to monospace */
+            padding-top: 3vh;
             margin: 0 auto;
-            background-color: #03a9f4;
+            max-width: 28em;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #52b817;
+            font-family: "Courier New", Courier, monospace; /* Change font to monospace */
+        }
+        
+        /* Add border between sections */
+        .section-divider {
+            border-bottom: 2px solid #4CAF50; /* Green border */
+            margin-bottom: 20px;
+        }
+
+        .terminal-box {
+            border: 2px solid #4CAF50; /* Green border */
+            background-color: #000;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .upload-btn {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .upload-btn button {
+            font-size: 18px;
+            padding: 12px 30px;
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
         }
 
         .background {
-
             border-radius: 5px;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-top: 20px;
         }
 
         .clipboard {
@@ -64,121 +103,143 @@
             border-radius: 3px;
             background-image: linear-gradient(135deg, #FDEB71 10%, #F8D800 100%);
             cursor: pointer;
-            color: #04048c;
-            font-family: "Karla", sans-serif;
+            color: #212529;
             font-size: 16px;
-            position: relative;
-            top: 0;
             transition: all 0.2s ease;
         }
 
-        body .clipboard:hover {
-            top: 2px;
+        .clipboard:hover {
+            transform: translateY(-2px);
         }
 
-        body p {
+        p {
             font-weight: 700;
+            margin-top: 10px;
+            text-align: center;
         }
     </style>
 </head>
 
 <body>
-    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
-        rel="stylesheet">
-    
-    
-    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <div class="container">
+        <div class="terminal-box">
+        <h1>Face Swap between images</h1>
+        <div class="section-divider"></div> <!-- Add divider -->
+        <h2>Swap faces between two images</h2>
+        </div>
+        <div class="terminal-box">
+            <input type="file" class="my-pond mt-4" multiple name="filepond" />
+        </div>
+
+        <div class="text-center upload-btn">
+            <button class="btn btn-success" onclick="upload_file_p_p()">Upload Files</button>
+        </div>
+        <div>
+        <h3>Select two images with single faces to see the magic <br><br><br><br></h3>
+        </div>
+
+        <div class="terminal-box">
+        <h1>Face Swap inside one image</h1>
+        <div class="section-divider"></div> <!-- Add divider -->
+        <h2>Swap faces inside one image containing two faces</h2>
+        </div>
+
+        <div class="terminal-box">
+            <input type="file" class="my-pond mt-4" multiple name="filepond2" />
+        </div>
+
+        <div class="text-center upload-btn">
+            <button class="btn btn-success" onclick="upload_file_pp()">Upload File</button>
+        </div>
+        <h3>Select an image with two faces to see the magic</h3>
 
 
-    <div class="text-center">
-
-        <img src="/media/image/undraw.svg" class="img-fluid img-responsive" style="height: 200px;">
-    </div>
-
-    <input type="file" class="my-pond mt-4" multiple name="filepond" />
-    
-    <div class="text-center">
-        <button class="btn btn-success" onclick="upload_file()">Upload File</button>
-    </div>
-
-    
-
-    <div class="carad mt-3" id="btn" style="display: none;">
-        <div class="card-bodqy">
-
-
-            <div class="background">
-                <center>
-                    <button onclick="copyClip()" class="clipboard">Click me to copy current Url</button>
-                    <p>Have you already clicked?</p>
-                </center>
+        <div class="card mt-3" id="btn" style="display: none;">
+            <div class="card-body">
+                <div class="background">
+                    <button onclick="copyClip()" class="clipboard">Click to Copy URL</button>
+                </div>
+                <p>Have you already clicked?</p>
             </div>
-
         </div>
     </div>
-    </div>
-
 
     <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
-
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
 
     <script>
         FilePond.registerPlugin(
             FilePondPluginImagePreview,
-
         );
 
         const pond = FilePond.create(
             document.querySelector('.my-pond'),
             {
-                maxFiles: 2 
+                maxFiles: 2
             }
         );
 
-        var url = null
+        const pond2 = FilePond.create(
+            document.querySelector('input[name="filepond2"]'),
+            {
+                maxFiles: 1
+            }
+        );
 
-        function upload_file() {
-            var files = pond.getFiles()
+        var url = null;
 
-            var formdata = new FormData()
+        function upload_file_p_p() {
+            var files = pond.getFiles();
+            var formdata = new FormData();
 
             for (var i = 0; i < files.length; i++) {
-                formdata.append('files', files[i].file)
+                formdata.append('files', files[i].file);
             }
 
             fetch('handel/', {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRFToken': "{{csrf_token}}"
-                    },
-                    body: formdata
-                }).then(res => res.json())
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': "{{csrf_token}}"
+                },
+                body: formdata
+            }).then(res => res.json())
                 .then(result => {
-                    console.log(result)
-
+                    console.log(result);
                     // url = `http://127.0.0.1:8000/download/${result.data.folder}`
-
                     // document.getElementById('btn').style.display = 'block';
+                });
+        }
 
-                    
+        function upload_file_pp() {
+            var files = pond2.getFiles();
+            var formdata = new FormData();
 
-                })
+            for (var i = 0; i < files.length; i++) {
+                formdata.append('files', files[i].file);
+            }
 
+            fetch('pp/', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': "{{csrf_token}}"
+                },
+                body: formdata
+            }).then(res => res.json())
+                .then(result => {
+                    console.log(result);
+                    // url = `http://127.0.0.1:8000/download/${result.data.folder}`
+                    // document.getElementById('btn').style.display = 'block';
+                });
         }
 
         function copyClip() {
-            console.log('dd')
-        
-         
+            console.log('dd');
             /* Copy the text inside the text field */
             navigator.clipboard.writeText(url);
-
             /* Alert the copied text */
             alert("Copied the text: " + url);
         }
     </script>
-
 </body>
 
 </html>
