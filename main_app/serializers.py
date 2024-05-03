@@ -1,4 +1,3 @@
-from msilib.schema import File
 from rest_framework import serializers
 from .models import * 
 import shutil
