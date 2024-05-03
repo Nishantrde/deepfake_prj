@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Swapper AI</title>
+    {% load static %}
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.cursor {
+    z-index: 999;
+    width: 10px;
+    height: 10px;
+    background-color: #A9A9A9;
+    border-radius: 50%;
+    position: fixed;
+}
+
+.page {
+    font-family: "Space Grotesk", sans-serif;
+    width: 100vw;
+    color: #ece6d5;
+}
+
+.loader {
+    width: 100vw;
+    height: 100vh;
+    background-color: #050c0f;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.navbar {
+    width: 100vw;
+    height: auto;
+    background-color: #050c0f;
+    padding: 3rem;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #ece6d5;
+    font-size: xx-large;
+    font-weight: 600;
+}
+
+.heading {
+    width: 100vw;
+    height: 80vh;
+    background-color: #050c0f;
+}
+
+.headingContent {
+    width: 100%;
+    height: 75%;
+    top: 7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.headingContent h1 {
+    font-size: 2.25rem
+        /* 36px */
+    ;
+    line-height: 2.5rem
+        /* 40px */
+    ;
+    text-transform: uppercase;
+}
+
+.headingContent h3 {
+    font-size: 6rem
+        /* 96px */
+    ;
+    line-height: 1;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+}
+
+.headingContent p {
+    left: 2.75rem;
+    position: absolute;
+    top: 60%;
+    width: 25rem;
+}
+
+.video {
+    width: 100vw;
+    height: 150vh;
+    background-color: #050c0f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.videoContainer {
+    width: 80vw;
+    height: 80vh;
+    margin-top: 5rem;
+}
+
+.videoContainer video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.videooverlay {
+    z-index: 999;
+    width: 80vw;
+    height: 80vh;
+    position: absolute;
+    background: transparent;
+}
+
+/* features */
+.features {
+ 
+    width: 100%;
+    height: 100vh;
+    background-color: #050c0f;
+    display: flex;
+}
+
+.features_left_part {
+    margin-top: 4rem;
+    padding-left: 5vw;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    flex-direction: column;
+}
+.features_left_part img{
+    margin-top: 2rem;
+    width: 30vw;
+    height: 40vh;
+    object-fit: cover;
+}
+
+.features_left_part h1 {
+    font-size: 4rem;
+}
+
+.features-right-part{
+    width: 50%;
+    height: 200%;
+    display: flex;
+    flex-direction: column;
+    gap: 40vh;
+    margin-top: 25%;
+}
+.content-right-part{
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+    opacity: 0;
+}
+
+.content-right-part h1{
+    font-size: 2.5vw;
+}
+
+.content-right-part p{
+    font-size: 1.5vw;
+    width: 75%;
+}
+
+/* work */
+.Explore_works{
+    width: 100vw;
+    height: 200vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #050c0f;
+}
+.imgContainer1{
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imgContainer1 img{
+    object-fit: cover;
+}
+.Explore_works h1{
+    font-size: 3rem;
+}
+.imgContainer2{
+    width: 80vw;
+    height: 70vh;
+}
+.imgContainer2 img{
+    width: 80vw;
+    height: 70vh;
+    object-fit: cover;
+}
+.btn-txt{
+    margin-top: 5rem;
+}
+.button{
+    margin-top: 1rem;
+    width: 5rem;
+    height: 2rem;
+    
+}
+
+</style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="cursor"></div>
+    <div class="page">
+        <div class="loader">
+            <h1>Tommorows</h1>
+            <h1>Future</h1>
+            <h1>Today</h1>
+        </div>
+
+
+        <div class="navbar">
+            <a href="">RDE</a>
+        </div>
+
+        <div class="heading">
+            <div class="headingContent">
+                <h1>The Impressionist</h1>
+                <h3>Unmasking Reality</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint iusto fugit obcaecati dolorum vero
+                    accusamus. Quod dolores similique excepturi nisi?</p>
+            </div>
+            <!-- <div><a href="test.html">Explore</a></div> -->
+        </div>
+
+        <div class="video">
+            <div class="videoContainer">
+                <div class="videooverlay"></div>
+                <!-- <video autoplay loop muted src="video.mp4"></video> -->
+            </div>
+        </div>
+
+
+        <div class="features">
+            <div class="features_left_part">
+                <h1>Uses of Face Swapping ai</h1>
+            </div>
+            <div class="features-right-part">
+                <div class="content-right-part c-one">
+                    <h1>lorem</h1>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem placeat rem possimus quis
+                        ipsa minus nam dolorum dolore doloremque atque?</p>
+                </div>
+                <div class="content-right-part c-two">
+                    <h1>Porem</h1>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem placeat rem possimus quis
+                        ipsa minus nam dolorum dolore doloremque atque?</p>
+                </div>
+                <div class="content-right-part c-three">
+                    <h1>Dorem</h1>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem placeat rem possimus quis
+                        ipsa minus nam dolorum dolore doloremque atque?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="works">
+            <div class="imgContainer">
+                <img src="https://images.unsplash.com/photo-1707996631817-cb5b533fb079?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+            </div>
+        </div> -->
+
+        <!-- button to navigate to face swapper -->
+        <!-- <a href="test.html">
+                <button>Click here</button>
+            </a> -->
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+        integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        {%load static%}
+    <script>
+        // loader animation
+let tl = gsap.timeline();
+tl.from('.loader h1', {
+  x: 200,
+  opacity: 0,
+  duration: 1,
+  stagger: 0.1,
+})
+tl.to(".loader h1", {
+  opacity: 0,
+  x: -40,
+  duration: 1,
+  stagger: 0.1,
+})
+tl.to(".loader", {
+  opacity: 0,
+})
+tl.to(".loader", {
+  display: "none",
+})
+tl.from("h3",{
+    y:100,
+    opacity: 0,
+    stagger: 0.1
+  })
+  tl.from("p", {
+    y: 100,
+    opacity: 0,
+    stagger: 0.1
+  })
+
+//cursor animation
+let main = document.querySelector(".page");
+let vidDiv=document.querySelector(".videoContainer");
+let imgDiv=document.querySelector(".face_map_img")
+main.addEventListener("mousemove", (item) => {
+    gsap.to('.cursor', {
+        x: item.x,
+        y: item.y,
+        duration: 1,
+        ease: "back.out",
+    })
+    vidDiv.addEventListener("mouseenter",()=>[
+       gsap.to('.cursor',{
+        scale:5,
+        background:"#80808078"
+       })
+    ])
+    vidDiv.addEventListener("mouseleave",()=>[
+       gsap.to('.cursor',{
+        scale:1,
+        background:"#A9A9A9"
+       })
+    ])
+    imgDiv.addEventListener("mouseenter",()=>[
+      gsap.to('.cursor',{
+       scale:5,
+       background:"#80808078"
+      })
+   ])
+   imgDiv
+   
+   
+   
+   .addEventListener("mouseleave",()=>[
+    gsap.to('.cursor',{
+     scale:1,
+     background:"#A9A9A9"
+    })
+ ])
+})
+  
+
+// features animation
+
+let tl4=gsap.timeline({
+  scrollTrigger:{
+    trigger:".features",
+    start:"50% 50%",
+    end:"200% 50%",
+    pin:true,
+    markers:true,
+    scrub:2,
+  }
+})
+
+tl4.to(".c-one",{
+  marginTop:"-25%",
+  opacity:"1",
+
+},'sct-1')
+
+tl4.to(".c-two",{
+  opacity:"1",
+
+},'sct-2')
+
+tl4.to(".c-one",{
+  marginTop:"-100%",
+  opacity:"0",
+
+},'sct-2')
+
+tl4.to(".c-three",{
+  opacity:"1",
+
+},'sct-2')
+
+tl4.to(".c-two",{
+  opacity:"0",
+
+},'sct-3')
+
+tl4.to(".c-one",{
+  marginTop:"-250%",
+},'sct-3')
+
+
+tl4.to(".c-four",{
+  opacity:"1",
+  
+},'sct-3')
+
+tl4.to(".c-three",{
+  opacity:"0",
+},'sct-4')
+    </script>
+</body>
+
+</html>

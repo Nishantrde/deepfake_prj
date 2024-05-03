@@ -10,6 +10,9 @@ from .swaper_pp import *
 def index(request):
     return render(request, "index.html")
 
+def test(req):
+    return render(req, "home.html")
+
 class HandelFileUpload(APIView):
     def post(self, request):
         try: 
@@ -21,6 +24,7 @@ class HandelFileUpload(APIView):
                 for item in os.listdir(f"public/static/{serializer.data['folder']}"):
                     print(item)
                     items.append(f"{serializer.data['folder']}\{item}")
+                
                 run_it(items[0], items[1], f"{serializer.data['folder']}")
                 serializer.zip_files(f"{serializer.data['folder']}")
                 return Response({
