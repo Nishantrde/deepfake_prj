@@ -28,10 +28,6 @@ Below are some images related to the project:
 - [Introduction](#introduction)
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Dataset](#dataset)
-- [Model Architecture](#model-architecture)
-- [Training](#training)
 - [Evaluation](#evaluation)
 - [Results](#results)
 - [Challenges and Considerations](#challenges-and-considerations)
@@ -65,38 +61,6 @@ Deepfake technology has garnered significant attention due to its ability to cre
    ```bash
    pip install -r requirements.txt
    ```
-
-## Usage
-
-1. **Data Preparation**: Organize your dataset with separate folders for source and target videos.
-2. **Training**: Execute the training script with specified parameters:
-   ```bash
-   python train.py --data_path /path_to_data --epochs 50 --batch_size 16
-   ```
-3. **Generating Deepfakes**: Use the trained model to create deepfake videos:
-   ```bash
-   python generate.py --model_path /path_to_model --input_video /path_to_video --output_video /path_to_output
-   ```
-
-## Dataset
-
-This project utilizes a dataset comprising videos from [Dataset Source], containing diverse facial expressions and lighting conditions to enhance model robustness.
-
-## Model Architecture
-
-The deepfake generation model is based on an encoder-decoder architecture with the following components:
-
-- **Encoder**: Extracts facial features from input images.
-- **Decoder**: Reconstructs images with the target face.
-- **Discriminator**: Assesses the realism of generated images.
-
-## Training
-
-The model is trained using the following configuration:
-
-- **Optimizer**: Adam with a learning rate of 0.0002.
-- **Loss Functions**: Combination of reconstruction loss and adversarial loss.
-- **Training Duration**: Approximately 50 hours on an NVIDIA GTX 1080 Ti GPU.
 
 ## Evaluation
 
