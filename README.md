@@ -114,7 +114,7 @@ The model achieved the following performance:
 - **SSIM**: 0.85
 - **IS**: 3.2
 
-*Include sample images or links to generated videos to showcase results.*
+
 
 ## Challenges and Considerations
 
